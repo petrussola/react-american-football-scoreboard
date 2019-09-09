@@ -9,20 +9,21 @@ function App() {
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
 
+  
   const homeTouchdown = () => {
     setHomeScore(homeScore + 7);
   };
   const homeField = () => {
     setHomeScore(homeScore + 3);
   };
-
+  
   const awayTouchdown = () => {
     setAwayScore(awayScore + 7);
   };
   const awayField = () => {
     setAwayScore(awayScore + 3);
   };
-
+  
   const teamScore = (teamName, amount) => {
     if (teamName === 'home') {
       setHomeScore(homeScore + amount);
@@ -30,8 +31,12 @@ function App() {
       setAwayScore(awayScore + amount);
     }
   }
+  
+  const [quarter, setQuarter] = useState(1);
 
-
+  const whichQuarter = () => {
+    setQuarter(quarter + 1);
+  }
 
   return (
     <div className="container">
@@ -50,7 +55,7 @@ function App() {
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow gaga={quarter} whatever={homeScore}/>
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -61,6 +66,8 @@ function App() {
         <div className="awayButtons">
           <button className="awayButtons__touchdown"  onClick={() => {teamScore('away', 7)}}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={() => {teamScore('away', 3)}}>Away Field Goal</button>
+          <button className="change__quarter" onClick={whichQuarter}>Set quarter</button>
+
         </div>
       </section>
     </div>
